@@ -9,6 +9,3 @@ COPY --from=build-deps /app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
-# how to run
-# docker run -p 8080:80 bhodge/politech_frontend_coding_challenge:latest
-# localhost 8080
