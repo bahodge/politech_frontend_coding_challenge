@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 // import axios from "axios";
 import fetch from "node-fetch";
+import LikeButton from "./components/LikeButton";
 
 function App() {
   const [currentGifUrl, setCurrentGifUrl] = useState(null);
@@ -32,9 +33,10 @@ function App() {
   return (
     <div className="App">
       <div>
-        {requestErrors && <div>{requestErrors.message}</div>}
+        <LikeButton />
+        {/* {requestErrors && <div>{requestErrors.message}</div>}
         <button onClick={fetchRandomGif}>Click</button>
-        {currentGifUrl && <img type="gif" src={currentGifUrl} alt="random" />}
+        {currentGifUrl && <img type="gif" src={currentGifUrl} alt="random" />} */}
       </div>
     </div>
   );
