@@ -33,10 +33,10 @@ function App() {
   return (
     <div className="App">
       <div>
-        <LikeButton />
-        {/* {requestErrors && <div>{requestErrors.message}</div>}
+        {requestErrors && <div>{requestErrors.message}</div>}
         <button onClick={fetchRandomGif}>Click</button>
-        {currentGifUrl && <img type="gif" src={currentGifUrl} alt="random" />} */}
+        {currentGifUrl && <img type="gif" src={currentGifUrl} alt="random" />}
+        {currentGifUrl && <LikeButton imageUrl={currentGifUrl} />}
       </div>
     </div>
   );

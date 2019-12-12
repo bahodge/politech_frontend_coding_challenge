@@ -1,11 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { LIKE_GIF } from "../redux/action";
+import { dispatchLikeGif } from "../redux/dispatcher";
 
-const LikeButton = props => {
-  return <div>{console.log(LIKE_GIF)}</div>;
+import { store } from "../redux/store";
+
+const LikeButton = ({ imageUrl }) => {
+  const handleClick = () => {
+    console.log(store.getState());
+    return dispatchLikeGif(imageUrl);
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Like Gif</button>
+    </div>
+  );
 };
 
-LikeButton.propTypes = {};
+LikeButton.propTypes = {
+  imageUrl: PropTypes.string.isRequired
+};
 
 export default LikeButton;
