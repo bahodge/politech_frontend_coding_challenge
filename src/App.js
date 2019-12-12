@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import axios from "axios";
+// import axios from "axios";
 import fetch from "node-fetch";
 
 function App() {
   const [currentGifUrl, setCurrentGifUrl] = useState(null);
+  const [requestErrors, setRequestErrors] = useState(null);
 
   const apiKey = process.env.REACT_APP_GIPHY_API_KEY;
   const endpoint = process.env.REACT_APP_GIPHY_BASE_ENDPOINT;
@@ -23,23 +24,17 @@ function App() {
         return res.json();
       })
       .then(json => {
-        console.log(json.data);
-        // setCurrentGifUrl(json.data.url);
-      });
+        setCurrentGifUrl(json.data.image_url);
+      })
+      .catch(error => setRequestErrors(error));
   };
 
-  const ind = `${endpoint}/A85KWwZvqqvq8?api_key=${apiKey}`;
-
-  // fetchRandom();
-
-  // ("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5");
-  console.log(ind);
   return (
     <div className="App">
       <div>
+        {requestErrors && <div>{requestErrors.message}</div>}
         <button onClick={fetchRandomGif}>Click</button>
-        {console.log(currentGifUrl)}
-        <img type="gif" src={ind} alt="random" />
+        {currentGifUrl && <img type="gif" src={currentGifUrl} alt="random" />}
       </div>
     </div>
   );
