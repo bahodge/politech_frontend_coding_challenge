@@ -1,23 +1,32 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { makeTranslateRequest } from "../services/request_service";
-
+import { sanitizeString } from "../helpers/FormSanitizer";
 const SearchForm = ({ setSearchResult }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSubmit = async event => {
-    event.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    // Makes params into an object
+    const params = { searchTerm };
+    const sanitizedValues = sanitizeString(params, "searchTerm");
+
+    console.log(params);
+    console.log(sanitizedValues);
 
     // TODO - Sanitize Search Term
-    const result = await makeTranslateRequest(searchTerm);
-    const {
-      images: {
-        downsized: { url }
-      },
-      id
-    } = result;
+    // const result = await makeTranslateRequest(sanitizedValues.searchTerm);
+    // I'm not sure how reliable the result will be
 
-    return setSearchResult({ url, id });
+    // const {
+    //   images: {
+    //     downsized: { url }
+    //   },
+    //   id
+    // } = result;
+
+    // return setSearchResult({ url, id });
   };
 
   const handleChange = event => {

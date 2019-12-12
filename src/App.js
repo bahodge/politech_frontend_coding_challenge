@@ -9,10 +9,7 @@ function App() {
     <div className="App">
       <div>
         <SearchForm setSearchResult={setSearchResult} />
-        {/* {requestErrors && <div>{requestErrors.message}</div>}
-        <button onClick={fetchRandomGif}>Click</button> */}
         {searchResult && <img type="gif" src={searchResult.url} alt="random" />}
-        {/* {currentGifUrl && <LikeButton imageUrl={currentGifUrl} />} */}
       </div>
     </div>
   );
