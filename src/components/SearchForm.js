@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { makeSearchRequest } from "../services/request_service";
+import { makeTranslateRequest } from "../services/request_service";
 
-const SearchForm = () => {
+const SearchForm = ({ setSearchResult }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSubmit = async event => {
     event.preventDefault();
 
     // TODO - Sanitize Search Term
+    const result = await makeTranslateRequest(searchTerm);
+    const {
+      images: {
+        downsized: { url }
+      },
+      id
+    } = result;
 
-    return await makeSearchRequest(searchTerm);
+    return setSearchResult({ url, id });
   };
 
   const handleChange = event => {
