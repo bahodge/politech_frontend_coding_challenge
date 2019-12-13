@@ -13,16 +13,15 @@ const SearchForm = ({ setSearchResult }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // Makes params into an object
     const params = { searchTerm, weirdnessValue };
     let sanitizedValues = sanitizeString(params, "searchTerm");
     sanitizedValues = sanitizeInteger(sanitizedValues, "weirdnessValue");
 
-    console.log(params);
     console.log(sanitizedValues);
 
-    // TODO - Sanitize Search Term
     const result = await makeTranslateRequest(sanitizedValues);
+
+    console.log(result);
 
     const {
       images: {
