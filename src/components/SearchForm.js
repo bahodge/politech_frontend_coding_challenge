@@ -2,11 +2,11 @@ import React, { useState } from "react";
 // import PropTypes from "prop-types";
 import { makeTranslateRequest } from "../services/request_service";
 import { sanitizeString, sanitizeInteger } from "../helpers/FormSanitizer";
-// import Slider from "rc-slider";
+
 import Slider from "rc-slider/lib/Slider";
 import "rc-slider/assets/index.css";
 
-const SearchForm = ({ setSearchResult }) => {
+const SearchForm = ({ setGiphyResult }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [weirdnessValue, setWeirdnessValue] = useState(0);
 
@@ -17,11 +17,7 @@ const SearchForm = ({ setSearchResult }) => {
     let sanitizedValues = sanitizeString(params, "searchTerm");
     sanitizedValues = sanitizeInteger(sanitizedValues, "weirdnessValue");
 
-    console.log(sanitizedValues);
-
     const result = await makeTranslateRequest(sanitizedValues);
-
-    console.log(result);
 
     const {
       images: {
@@ -30,7 +26,7 @@ const SearchForm = ({ setSearchResult }) => {
       id
     } = result;
 
-    return setSearchResult({ url, id });
+    return setGiphyResult({ url, id });
   };
 
   const updateSearchTerm = event => {

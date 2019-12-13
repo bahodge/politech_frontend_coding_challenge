@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import "./App.css";
 import SearchForm from "./components/SearchForm";
+import SearchResult from "./components/SearchResult";
 
 function App() {
-  const [searchResult, setSearchResult] = useState();
+  const [giphyResult, setGiphyResult] = useState();
 
   return (
     <div className="App">
       <div>
-        <SearchForm setSearchResult={setSearchResult} />
-        {searchResult && <img type="gif" src={searchResult.url} alt="random" />}
+        <SearchForm setGiphyResult={setGiphyResult} />
+
+        {giphyResult && <SearchResult giphyResult={giphyResult} />}
       </div>
     </div>
   );

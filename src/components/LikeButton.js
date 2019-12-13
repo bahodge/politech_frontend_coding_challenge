@@ -4,11 +4,21 @@ import { dispatchLikeGif } from "../redux/dispatcher";
 
 import { store } from "../redux/store";
 
-const LikeButton = ({ imageUrl }) => {
+const LikeButton = ({ url, id }) => {
   const handleClick = () => {
-    console.log(store.getState());
-    return dispatchLikeGif(imageUrl);
+    return dispatchLikeGif(id, url);
   };
+
+  const isLiked = store.getState().filter(gif => gif.id === id).length > 0;
+  console.log(isLiked);
+  console.log(url);
+  console.log(id);
+
+  // if the gif is already liked
+  // show the like button as disabled
+
+  // if the gif is not already liked
+  // show the like button as enabled
 
   return (
     <div>
@@ -17,8 +27,9 @@ const LikeButton = ({ imageUrl }) => {
   );
 };
 
-LikeButton.propTypes = {
-  imageUrl: PropTypes.string.isRequired
-};
+// LikeButton.propTypes = {
+//   url: PropTypes.string.isRequired,
+//   id: PropTypes.string.isRequired
+// };
 
 export default LikeButton;
