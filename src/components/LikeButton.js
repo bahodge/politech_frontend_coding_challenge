@@ -1,35 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { dispatchLikeGif } from "../redux/dispatcher";
+import { dispatchLikeGif, dispatchUnlikeGif } from "../redux/dispatcher";
 
 import { store } from "../redux/store";
 
 const LikeButton = ({ url, id }) => {
-  const handleClick = () => {
+  const [isLiked, setIsLiked] = useState(id in store.getState());
+
+  const handleLike = () => {
+    setIsLiked(true);
     return dispatchLikeGif(id, url);
   };
 
-  const isLiked = store.getState().filter(gif => gif.id === id).length > 0;
-  console.log(isLiked);
-  console.log(url);
-  console.log(id);
+  const handleUnlike = () => {
+    setIsLiked(false);
+    return dispatchUnlikeGif(id);
+  };
 
-  // if the gif is already liked
-  // show the like button as disabled
-
-  // if the gif is not already liked
-  // show the like button as enabled
+  if (isLiked) {
+    return (
+      <div>
+        <button onClick={handleUnlike} type="button">
+          Unlike
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <button onClick={handleClick}>Like Gif</button>
+      <button onClick={handleLike} type="button">
+        Like
+      </button>
     </div>
   );
 };
 
-// LikeButton.propTypes = {
-//   url: PropTypes.string.isRequired,
-//   id: PropTypes.string.isRequired
-// };
+LikeButton.propTypes = {
+  url: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired
+};
 
 export default LikeButton;
