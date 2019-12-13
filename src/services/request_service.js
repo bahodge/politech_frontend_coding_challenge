@@ -21,8 +21,8 @@ const makeSearchRequest = async (searchKeyword = "") => {
     .then(json => json.data);
 };
 
-const makeTranslateRequest = async (searchKeyword = "", weirdnessScale = 0) => {
-  const requestUrl = `${baseEndpoint}/translate?api_key=${apiKey}&s=${searchKeyword}&weirdness=${weirdnessScale}&limit=5`;
+const makeTranslateRequest = async ({ searchKeyword, weirdnessValue }) => {
+  const requestUrl = `${baseEndpoint}/translate?api_key=${apiKey}&s=${searchKeyword}&weirdness=${weirdnessValue}`;
   const requestHeaders = {
     headers: headers,
     method: "GET",
