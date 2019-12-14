@@ -2,12 +2,8 @@ import React, { useState } from "react";
 // import PropTypes from "prop-types";
 
 import {
-  Button,
-  Row,
-  Col,
   Slider,
   Form,
-  FormControl,
   FormGroup,
   ControlLabel,
   Input,
@@ -20,9 +16,9 @@ import { sanitizeString, sanitizeInteger } from "../helpers/FormSanitizer";
 
 // import Slider from "rc-slider/lib/Slider";
 
-const SearchForm = ({ setGiphyResult }) => {
+const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [weirdnessValue, setWeirdnessValue] = useState(0);
+  const [weirdnessValue, setWeirdnessValue] = useState(5);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -35,14 +31,20 @@ const SearchForm = ({ setGiphyResult }) => {
     const result = await makeTranslateRequest(sanitizedValues);
 
     console.log(result);
-    const {
-      images: {
-        downsized: { url }
-      },
-      id
-    } = result;
 
-    return setGiphyResult({ url, id, weirdnessValue });
+    const { images, id } = result;
+
+    if (images) {
+      const {
+        downsized: { url }
+      } = images;
+
+      setGiphyResultError(null);
+      return setGiphyResult({ url, id, weirdnessValue });
+    } else {
+      setGiphyResult(null);
+      return setGiphyResultError("No Results");
+    }
   };
 
   const updateSearchTerm = newValue => {
@@ -54,7 +56,7 @@ const SearchForm = ({ setGiphyResult }) => {
   };
   //updateSearchTerm
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       <FormGroup>
         <ControlLabel>Search Term</ControlLabel>
         <InputGroup inside>
@@ -65,11 +67,7 @@ const SearchForm = ({ setGiphyResult }) => {
             placeholder="Search Term"
             onChange={value => updateSearchTerm(value)}
           />
-          <InputGroup.Button
-            color="blue"
-            // onClick={e => console.log(e.target.submit())}
-            type="submit"
-          >
+          <InputGroup.Button type="submit" color="blue" onClick={handleSubmit}>
             <Icon icon="check" /> Submit
           </InputGroup.Button>
         </InputGroup>

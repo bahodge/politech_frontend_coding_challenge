@@ -31,7 +31,8 @@ const makeTranslateRequest = async ({ searchTerm, weirdnessValue }) => {
 
   return await fetch(requestUrl, requestHeaders)
     .then(res => res.json())
-    .then(json => json.data);
+    .then(json => json.data)
+    .catch(error => error);
 };
 
 export { makeSearchRequest, makeTranslateRequest };
