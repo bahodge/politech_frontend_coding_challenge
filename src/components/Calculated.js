@@ -72,9 +72,11 @@ const Calculated = props => {
         <Col xs={2}> </Col> {/* this is strange because its just for offset */}
         {buildLikedGifs()}
       </Row>
-      <Row>
+      <Row style={{ marginTop: "2rem" }}>
         <Col>
-          <Button onClick={handleStartOver}>Start Over</Button>
+          <Button color="blue" onClick={handleStartOver}>
+            Start Over
+          </Button>
         </Col>
       </Row>
     </Grid>
