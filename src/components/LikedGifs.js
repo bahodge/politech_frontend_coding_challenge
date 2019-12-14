@@ -22,11 +22,19 @@ const LikedGifs = ({ likedGifs, canCalculate }) => {
           />
         ))}
       </Row>
-      <Row>
-        <Col>
-          <Button>{canCalculate ? "Click Me" : "Need more likes"}</Button>
-        </Col>
-      </Row>
+      {canCalculate ? (
+        <Row style={{ marginTop: "1rem" }}>
+          <Col>
+            <Button color="blue">Calculate Weirdness</Button>
+          </Col>
+        </Row>
+      ) : (
+        <Row style={{ marginTop: "1rem" }}>
+          <Col>
+            <Button disabled>Need More Likes</Button>
+          </Col>
+        </Row>
+      )}
     </>
   );
 };

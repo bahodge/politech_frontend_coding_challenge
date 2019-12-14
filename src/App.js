@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Container style={{ height: "100vh" }} className="App">
-      <Header>
+      <Header style={{ marginBottom: "3rem" }}>
         <Grid style={{ maxWidth: "1000px" }}>
           <Row style={{ textAlign: "left" }}>
             <Col xs={24} sm={24} md={24} lg={24}>
