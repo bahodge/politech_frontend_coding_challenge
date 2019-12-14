@@ -8,7 +8,9 @@ export const likedGifs = (state = {}, action) => {
       } else {
         state[action.id] = {
           url: action.url,
-          weirdnessValue: action.weirdnessValue
+          weirdnessValue: action.weirdnessValue,
+          title: action.title,
+          searchTerm: action.searchTerm
         };
         return state;
       }

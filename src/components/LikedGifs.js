@@ -7,9 +7,19 @@ const LikedGifs = ({ likedGifs }) => {
   return (
     <>
       <Row>
-        {likedGifs.map(({ url, id, weirdnessValue }, idx) => (
+        <Col>
+          <h4>Liked GIFs</h4>
+        </Col>
+      </Row>
+      <Row>
+        {likedGifs.map(({ url, id, weirdnessValue, title }, idx) => (
           <Col key={idx} md={12} style={{ marginTop: "1rem" }}>
-            <LikedGif url={url} id={id} weirdnessValue={weirdnessValue} />
+            <LikedGif
+              url={url}
+              id={id}
+              weirdnessValue={weirdnessValue}
+              title={title}
+            />
           </Col>
         ))}
       </Row>
@@ -17,7 +27,6 @@ const LikedGifs = ({ likedGifs }) => {
   );
 };
 
-// props passed?
 LikedGifs.propTypes = {
   likedGifs: PropTypes.array.isRequired
 };

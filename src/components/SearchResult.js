@@ -4,7 +4,7 @@ import LikeButton from "./LikeButton";
 import { Row, Col } from "rsuite";
 
 const SearchResult = ({ giphyResult, setLikedGifs }) => {
-  const { url, id, weirdnessValue } = giphyResult;
+  const { url, id, weirdnessValue, title, searchTerm } = giphyResult;
 
   return (
     <Row style={{ marginTop: "1rem" }}>
@@ -31,6 +31,8 @@ const SearchResult = ({ giphyResult, setLikedGifs }) => {
             <LikeButton
               url={url}
               id={id}
+              title={title}
+              searchTerm={searchTerm}
               weirdnessValue={weirdnessValue}
               setLikedGifs={setLikedGifs}
             />

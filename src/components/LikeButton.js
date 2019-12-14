@@ -6,18 +6,25 @@ import { Button, Icon } from "rsuite";
 import { dispatchLikeGif, dispatchUnlikeGif } from "../redux/dispatcher";
 import { store } from "../redux/store";
 
-const LikeButton = ({ url, id, weirdnessValue, setLikedGifs }) => {
+const LikeButton = ({
+  url,
+  id,
+  weirdnessValue,
+  title,
+  searchTerm,
+  setLikedGifs
+}) => {
   const [isLiked, setIsLiked] = useState(id in store.getState());
 
   const getLikedGifs = () =>
     Object.keys(store.getState()).map(id => {
-      const { url, weirdnessValue } = store.getState()[id];
-      return { id, weirdnessValue, url };
+      const { url, weirdnessValue, title, searchTerm } = store.getState()[id];
+      return { id, weirdnessValue, url, title, searchTerm };
     });
 
   const handleLike = () => {
     setIsLiked(true);
-    dispatchLikeGif(id, url, weirdnessValue);
+    dispatchLikeGif(id, url, weirdnessValue, title, searchTerm);
     return setLikedGifs(getLikedGifs());
   };
 

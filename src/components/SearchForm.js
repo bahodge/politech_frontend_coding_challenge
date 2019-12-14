@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
+import { store } from "../redux/store";
 
 import {
   Slider,
@@ -14,11 +15,32 @@ import {
 import { makeTranslateRequest } from "../services/request_service";
 import { sanitizeString, sanitizeInteger } from "../helpers/FormSanitizer";
 
-// import Slider from "rc-slider/lib/Slider";
-
 const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [weirdnessValue, setWeirdnessValue] = useState(5);
+
+  const validSearchTerm = searchTerm => {
+    // get redux state
+    const currentState = store.getState();
+
+    const results = Object.keys(currentState).filter(id => {
+      return (
+        currentState[id].searchTerm.toLowerCase() === searchTerm.toLowerCase()
+      );
+    });
+
+    // found a match and you cant do it, set errors and clear the searched one
+
+    if (results.length > 0) {
+      setGiphyResult(null);
+      setGiphyResultError(`${searchTerm} is already used`);
+      return false;
+    }
+
+    return true;
+    console.log(results);
+    // look at all the things and see if searchTerm has been used
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -28,11 +50,16 @@ const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
     let sanitizedValues = sanitizeString(params, "searchTerm");
     sanitizedValues = sanitizeInteger(sanitizedValues, "weirdnessValue");
 
+    // THere should be some validation here to prevent the search term being liked twice
+
+    ///////////////////// BEFORE REQUEST ///////////////////
+    if (!validSearchTerm(sanitizedValues.searchTerm)) return;
+
     const result = await makeTranslateRequest(sanitizedValues);
 
-    console.log(result);
+    // console.log(result);
 
-    const { images, id } = result;
+    const { images, id, title } = result;
 
     if (images) {
       const {
@@ -40,7 +67,13 @@ const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
       } = images;
 
       setGiphyResultError(null);
-      return setGiphyResult({ url, id, weirdnessValue });
+      return setGiphyResult({
+        url,
+        id,
+        weirdnessValue,
+        title,
+        searchTerm: sanitizedValues.searchTerm
+      });
     } else {
       setGiphyResult(null);
       return setGiphyResultError("No Results");
@@ -54,7 +87,6 @@ const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
   const updateWeirdnessValue = newValue => {
     setWeirdnessValue(newValue);
   };
-  //updateSearchTerm
   return (
     <Form>
       <FormGroup>
@@ -90,8 +122,9 @@ const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
   );
 };
 
-// SearchForm.propTypes = {
-//   imageUrl: PropTypes.string.isRequired
-// };
+SearchForm.propTypes = {
+  setGiphyResult: PropTypes.func.isRequired,
+  setGiphyResultError: PropTypes.func.isRequired
+};
 
 export default SearchForm;

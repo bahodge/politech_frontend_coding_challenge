@@ -50,6 +50,12 @@ const LeftPanel = props => {
   );
 };
 
-LeftPanel.propTypes = {};
+LeftPanel.propTypes = {
+  setGiphyResult: PropTypes.func.isRequired,
+  setGiphyResultError: PropTypes.func.isRequired,
+  giphyResultError: PropTypes.string,
+  giphyResult: PropTypes.object,
+  setLikedGifs: PropTypes.func.isRequired
+};
 
 export default LeftPanel;

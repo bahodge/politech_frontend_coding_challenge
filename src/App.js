@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 
-import { Container, Header, Content, Footer, Grid, Row, Col } from "rsuite";
+import { Container, Header, Content, Grid, Row, Col } from "rsuite";
 
-import SearchForm from "./components/SearchForm";
-import SearchResult from "./components/SearchResult";
-import LikedGifs from "./components/LikedGifs";
-import SearchResultError from "./components/SearchResultError";
-import ApplicationInstructions from "./components/ApplicationInstructions";
 import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
 
@@ -15,11 +10,14 @@ function App() {
   const [giphyResult, setGiphyResult] = useState();
   const [giphyResultError, setGiphyResultError] = useState();
   const [likedGifs, setLikedGifs] = useState([]);
+  const [isCalculating, setIsCalculating] = useState(false);
+
+  // console.log("Is Calculating", isCalculating);
 
   return (
     <Container style={{ height: "100vh" }} className="App">
       <Header>
-        <Grid style={{ maxWidth: "850px" }}>
+        <Grid style={{ maxWidth: "1000px" }}>
           <Row style={{ textAlign: "left" }}>
             <Col xs={24} sm={24} md={24} lg={24}>
               <h3>Weirdness Calculator</h3>
@@ -28,7 +26,7 @@ function App() {
         </Grid>
       </Header>
       <Content>
-        <Grid style={{ maxWidth: "850px" }}>
+        <Grid style={{ maxWidth: "1000px" }}>
           <LeftPanel
             setGiphyResult={setGiphyResult}
             setGiphyResultError={setGiphyResultError}

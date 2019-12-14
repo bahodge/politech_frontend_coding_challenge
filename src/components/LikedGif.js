@@ -6,20 +6,10 @@ import PropTypes from "prop-types";
 // import { store } from "../redux/store";
 // import LikeButton from "./LikeButton";
 
-const LikedGif = ({ id, url, weirdnessValue, setLikedGifs }) => {
-  // const getLikedGifs = () =>
-  //   Object.keys(store.getState()).map(id => {
-  //     const { url, weirdnessValue } = store.getState()[id];
-  //     return { id, weirdnessValue, url };
-  //   });
-
-  // const handleUnlike = () => {
-  //   dispatchUnlikeGif(id);
-  //   return setLikedGifs(getLikedGifs());
-  // };
-
+const LikedGif = ({ id, url, weirdnessValue, title }) => {
   return (
     <div>
+      <p>{title}</p>
       <img style={{ height: "100px" }} src={url} alt={id} />
       <p>Weirdness: {weirdnessValue}</p>
       {/* <LikeButton
