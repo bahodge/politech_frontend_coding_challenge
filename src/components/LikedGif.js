@@ -4,13 +4,17 @@ import { Row, Col } from "rsuite";
 
 const LikedGif = ({ id, url, weirdnessValue, title }) => {
   return (
-    <div>
-      <Row style={{ marginTop: "0.5rem" }}>
+    <div style={{ display: "block" }}>
+      <Row style={{ marginTop: "1rem" }}>
         <Col>{title ? title : "Untitled"}</Col>
       </Row>
       <Row style={{ marginTop: "0.5rem" }}>
         <Col>
-          <img style={{ maxHeight: "60px" }} src={url} alt={id} />
+          <img
+            style={{ maxHeight: "60px", maxWidth: "100px" }}
+            src={url}
+            alt={id}
+          />
         </Col>
       </Row>
       <Row style={{ marginTop: "0.5rem" }}>

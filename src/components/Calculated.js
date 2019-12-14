@@ -58,7 +58,7 @@ const Calculated = props => {
         <Col>
           <h5>
             You scored an {calculatedWeirdnessValue()} out of 10 on the
-            wiredness scale!
+            weirdness scale!
           </h5>
         </Col>
       </Row>
