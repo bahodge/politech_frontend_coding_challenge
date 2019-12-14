@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import LikeButton from "./LikeButton";
 import { Row, Col } from "rsuite";
 
-const SearchResult = ({ giphyResult, setLikedGifs }) => {
+const SearchResult = ({ giphyResult, setLikedGifs, setCanCalculate }) => {
   const { url, id, weirdnessValue, title, searchTerm } = giphyResult;
 
   return (
@@ -35,6 +35,7 @@ const SearchResult = ({ giphyResult, setLikedGifs }) => {
               searchTerm={searchTerm}
               weirdnessValue={weirdnessValue}
               setLikedGifs={setLikedGifs}
+              setCanCalculate={setCanCalculate}
             />
           </Col>
         </Row>

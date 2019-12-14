@@ -4,18 +4,18 @@ import LikedGifs from "./LikedGifs";
 import { Col } from "rsuite";
 
 const RightPanel = props => {
-  const { likedGifs, setLikedGifs } = props;
+  const { likedGifs, canCalculate } = props;
 
   return (
     <Col smOffset={2} mdOffset={2} lgOffset={2} sm={10} md={10} lg={10}>
-      <LikedGifs likedGifs={likedGifs} setLikedGifs={setLikedGifs} />
+      <LikedGifs likedGifs={likedGifs} canCalculate={canCalculate} />
     </Col>
   );
 };
 
 RightPanel.propTypes = {
   likedGifs: PropTypes.array.isRequired,
-  setLikedGifs: PropTypes.func.isRequired
+  canCalculate: PropTypes.bool.isRequired
 };
 
 export default RightPanel;

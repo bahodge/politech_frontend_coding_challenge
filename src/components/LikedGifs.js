@@ -1,27 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import LikedGif from "./LikedGif";
-import { Col, Row } from "rsuite";
+import { Col, Row, Button } from "rsuite";
 
-const LikedGifs = ({ likedGifs }) => {
+const LikedGifs = ({ likedGifs, canCalculate }) => {
   return (
     <>
       <Row>
-        <Col>
+        <Col style={{ textAlign: "left" }}>
           <h4>Liked GIFs</h4>
         </Col>
       </Row>
       <Row>
         {likedGifs.map(({ url, id, weirdnessValue, title }, idx) => (
-          <Col key={idx} md={12} style={{ marginTop: "1rem" }}>
-            <LikedGif
-              url={url}
-              id={id}
-              weirdnessValue={weirdnessValue}
-              title={title}
-            />
-          </Col>
+          <LikedGif
+            key={idx}
+            url={url}
+            id={id}
+            weirdnessValue={weirdnessValue}
+            title={title}
+          />
         ))}
+      </Row>
+      <Row>
+        <Col>
+          <Button>{canCalculate ? "Click Me" : "Need more likes"}</Button>
+        </Col>
       </Row>
     </>
   );

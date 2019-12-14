@@ -12,7 +12,8 @@ const LikeButton = ({
   weirdnessValue,
   title,
   searchTerm,
-  setLikedGifs
+  setLikedGifs,
+  setCanCalculate
 }) => {
   const [isLiked, setIsLiked] = useState(id in store.getState());
 
@@ -25,12 +26,14 @@ const LikeButton = ({
   const handleLike = () => {
     setIsLiked(true);
     dispatchLikeGif(id, url, weirdnessValue, title, searchTerm);
+    setCanCalculate(Object.keys(getLikedGifs()).length === 5);
     return setLikedGifs(getLikedGifs());
   };
 
   const handleUnlike = () => {
     setIsLiked(false);
     dispatchUnlikeGif(id);
+    setCanCalculate(Object.keys(getLikedGifs()).length === 5);
     return setLikedGifs(getLikedGifs());
   };
 
@@ -38,6 +41,14 @@ const LikeButton = ({
     return (
       <Button color="red" onClick={handleUnlike} type="button">
         <Icon icon="thumbs-down" /> Unlike
+      </Button>
+    );
+  }
+
+  if (Object.keys(getLikedGifs()).length >= 5) {
+    return (
+      <Button disabled type="button">
+        Cannot Like More
       </Button>
     );
   }

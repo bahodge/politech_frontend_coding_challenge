@@ -10,7 +10,7 @@ function App() {
   const [giphyResult, setGiphyResult] = useState();
   const [giphyResultError, setGiphyResultError] = useState();
   const [likedGifs, setLikedGifs] = useState([]);
-  const [isCalculating, setIsCalculating] = useState(false);
+  const [canCalculate, setCanCalculate] = useState(false);
 
   // console.log("Is Calculating", isCalculating);
 
@@ -33,8 +33,9 @@ function App() {
             giphyResultError={giphyResultError}
             giphyResult={giphyResult}
             setLikedGifs={setLikedGifs}
+            setCanCalculate={setCanCalculate}
           />
-          <RightPanel likedGifs={likedGifs} setLikedGifs={setLikedGifs} />
+          <RightPanel likedGifs={likedGifs} canCalculate={canCalculate} />
         </Grid>
       </Content>
     </Container>

@@ -13,7 +13,8 @@ const LeftPanel = props => {
     setGiphyResultError,
     giphyResultError,
     giphyResult,
-    setLikedGifs
+    setLikedGifs,
+    setCanCalculate
   } = props;
 
   return (
@@ -40,6 +41,7 @@ const LeftPanel = props => {
 
           {giphyResult && (
             <SearchResult
+              setCanCalculate={setCanCalculate}
               giphyResult={giphyResult}
               setLikedGifs={setLikedGifs}
             />
@@ -55,6 +57,7 @@ LeftPanel.propTypes = {
   setGiphyResultError: PropTypes.func.isRequired,
   giphyResultError: PropTypes.string,
   giphyResult: PropTypes.object,
+  setCanCalculate: PropTypes.func.isRequired,
   setLikedGifs: PropTypes.func.isRequired
 };
 
