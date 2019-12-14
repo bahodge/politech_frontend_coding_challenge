@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { dispatchLikeGif, dispatchUnlikeGif } from "../redux/dispatcher";
-
 import { store } from "../redux/store";
 
 const LikeButton = ({ url, id }) => {

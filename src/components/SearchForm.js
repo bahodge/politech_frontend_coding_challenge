@@ -12,6 +12,7 @@ const SearchForm = ({ setGiphyResult }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setGiphyResult(null); // I needed to reset the giphy to nuke the search result so it redraws.
 
     const params = { searchTerm, weirdnessValue };
     let sanitizedValues = sanitizeString(params, "searchTerm");
