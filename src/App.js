@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <LikedGifs />
+        <LikedGifs likedGifs={likedGifs} />
         <SearchForm setGiphyResult={setGiphyResult} />
 
         {giphyResult && (

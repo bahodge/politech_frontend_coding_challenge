@@ -6,21 +6,22 @@ import { store } from "../redux/store";
 const LikeButton = ({ url, id, weirdnessValue, setLikedGifs }) => {
   const [isLiked, setIsLiked] = useState(id in store.getState());
 
-  const likedGifs = Object.keys(store.getState()).map(id => {
-    const { url, weirdnessValue } = store.getState();
-    return { id, weirdnessValue, url };
-  });
+  const getLikedGifs = () =>
+    Object.keys(store.getState()).map(id => {
+      const { url, weirdnessValue } = store.getState()[id];
+      return { id, weirdnessValue, url };
+    });
 
   const handleLike = () => {
     setIsLiked(true);
     dispatchLikeGif(id, url, weirdnessValue);
-    return setLikedGifs(likedGifs);
+    return setLikedGifs(getLikedGifs());
   };
 
   const handleUnlike = () => {
     setIsLiked(false);
     dispatchUnlikeGif(id);
-    return setLikedGifs(likedGifs);
+    return setLikedGifs(getLikedGifs());
   };
 
   if (isLiked) {
