@@ -58,7 +58,7 @@ const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
   return (
     <Form>
       <FormGroup>
-        <ControlLabel>Search Term</ControlLabel>
+        <ControlLabel style={{ fontWeight: "bold" }}>Search Term</ControlLabel>
         <InputGroup inside>
           <Input
             name="searchTerm"
