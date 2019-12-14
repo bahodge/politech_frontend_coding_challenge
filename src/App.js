@@ -5,12 +5,14 @@ import { Container, Header, Content, Grid, Row, Col } from "rsuite";
 
 import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
+import Calculated from "./components/Calculated";
 
 function App() {
   const [giphyResult, setGiphyResult] = useState();
   const [giphyResultError, setGiphyResultError] = useState();
   const [likedGifs, setLikedGifs] = useState([]);
   const [canCalculate, setCanCalculate] = useState(false);
+  const [calculated, setCalculated] = useState(false);
 
   // console.log("Is Calculating", isCalculating);
 
@@ -26,17 +28,25 @@ function App() {
         </Grid>
       </Header>
       <Content>
-        <Grid style={{ maxWidth: "1000px" }}>
-          <LeftPanel
-            setGiphyResult={setGiphyResult}
-            setGiphyResultError={setGiphyResultError}
-            giphyResultError={giphyResultError}
-            giphyResult={giphyResult}
-            setLikedGifs={setLikedGifs}
-            setCanCalculate={setCanCalculate}
-          />
-          <RightPanel likedGifs={likedGifs} canCalculate={canCalculate} />
-        </Grid>
+        {calculated ? (
+          <Calculated likedGifs={likedGifs} setLikedGifs={setLikedGifs} />
+        ) : (
+          <Grid style={{ maxWidth: "1000px" }}>
+            <LeftPanel
+              setGiphyResult={setGiphyResult}
+              setGiphyResultError={setGiphyResultError}
+              giphyResultError={giphyResultError}
+              giphyResult={giphyResult}
+              setLikedGifs={setLikedGifs}
+              setCanCalculate={setCanCalculate}
+            />
+            <RightPanel
+              likedGifs={likedGifs}
+              canCalculate={canCalculate}
+              setCalculated={setCalculated}
+            />
+          </Grid>
+        )}
       </Content>
     </Container>
   );

@@ -4,7 +4,7 @@ import { Row, Col } from "rsuite";
 
 const LikedGif = ({ id, url, weirdnessValue, title }) => {
   return (
-    <Col md={12} style={{ marginTop: "1rem" }}>
+    <div>
       <Row style={{ marginTop: "0.5rem" }}>
         <Col>{title ? title : "Untitled"}</Col>
       </Row>
@@ -16,7 +16,7 @@ const LikedGif = ({ id, url, weirdnessValue, title }) => {
       <Row style={{ marginTop: "0.5rem" }}>
         <Col>Weirdness: {weirdnessValue}</Col>
       </Row>
-    </Col>
+    </div>
   );
 };
 

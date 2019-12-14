@@ -3,7 +3,16 @@ import PropTypes from "prop-types";
 import LikedGif from "./LikedGif";
 import { Col, Row, Button } from "rsuite";
 
-const LikedGifs = ({ likedGifs, canCalculate }) => {
+const LikedGifs = ({ likedGifs, canCalculate, setCalculated }) => {
+  const remainingLikes = () => 5 - likedGifs.length;
+
+  // Calculate gifs
+  const handleCalculate = () => {
+    console.log("calculating");
+    return setCalculated(true);
+  };
+  //
+
   return (
     <>
       <Row>
@@ -13,28 +22,41 @@ const LikedGifs = ({ likedGifs, canCalculate }) => {
       </Row>
       <Row>
         {likedGifs.map(({ url, id, weirdnessValue, title }, idx) => (
-          <LikedGif
-            key={idx}
-            url={url}
-            id={id}
-            weirdnessValue={weirdnessValue}
-            title={title}
-          />
+          <Col key={idx} md={12} style={{ marginTop: "1rem" }}>
+            <LikedGif
+              url={url}
+              id={id}
+              weirdnessValue={weirdnessValue}
+              title={title}
+            />
+          </Col>
         ))}
       </Row>
       {canCalculate ? (
         <Row style={{ marginTop: "1rem" }}>
           <Col>
-            <Button color="blue">Calculate Weirdness</Button>
+            <Button onClick={handleCalculate} color="blue">
+              Calculate My Weirdness Score
+            </Button>
           </Col>
         </Row>
       ) : (
         <Row style={{ marginTop: "1rem" }}>
           <Col>
-            <Button disabled>Need More Likes</Button>
+            <Button
+              onClick={handleCalculate} //disabled
+            >
+              Calculate My Weirdness Score
+            </Button>
           </Col>
         </Row>
       )}
+      <Row style={{ marginTop: "1rem" }}>
+        <Col>
+          You must <em>Like</em> {remainingLikes()} more GIFs to calculate your
+          score
+        </Col>
+      </Row>
     </>
   );
 };
