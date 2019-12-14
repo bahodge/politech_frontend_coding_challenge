@@ -2,18 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import LikedGif from "./LikedGif";
 import { Grid, Row, Col, Button } from "rsuite";
-import { store } from "../redux/store";
+
+import { dispatchStartOver } from "../redux/dispatcher";
 
 const Calculated = props => {
-  const { likedGifs, setLikedGifs } = props;
+  const {
+    likedGifs,
+    setLikedGifs,
+    setGiphyResult,
+    setGiphyResultError,
+    setCanCalculate,
+    setCalculated
+  } = props;
 
   const handleStartOver = () => {
+    console.log("STARTING OVER!");
     // Nukes the store
 
     setLikedGifs([]);
+    setGiphyResult(null);
+    setGiphyResultError(null);
+    setCanCalculate(false);
+    dispatchStartOver();
+    return setCalculated(false);
 
     // Nukes the state for all global
-    console.log("STARTING OVER!");
   };
 
   const calculatedWeirdnessValue = () => {
@@ -27,15 +40,7 @@ const Calculated = props => {
 
   const buildLikedGifs = () => {
     return likedGifs.map(({ url, id, weirdnessValue, title }, idx) => (
-      <Col
-        key={idx}
-        // smOffset={2}
-        // mdOffset={2}
-        // lgOffset={2}
-        sm={4}
-        md={4}
-        lg={4}
-      >
+      <Col key={idx} sm={4} md={4} lg={4}>
         <LikedGif
           key={idx}
           url={url}

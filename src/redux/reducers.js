@@ -1,4 +1,4 @@
-import { LIKE_GIF, UNLIKE_GIF } from "./action";
+import { LIKE_GIF, UNLIKE_GIF, START_OVER } from "./action";
 
 export const likedGifs = (state = {}, action) => {
   switch (action.type) {
@@ -22,6 +22,9 @@ export const likedGifs = (state = {}, action) => {
         .map(key => (newState[key] = state[key]));
 
       return newState;
+
+    case START_OVER:
+      return {};
 
     default:
       return state;

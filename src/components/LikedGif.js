@@ -14,7 +14,7 @@ const LikedGif = ({ id, url, weirdnessValue, title }) => {
         </Col>
       </Row>
       <Row style={{ marginTop: "0.5rem" }}>
-        <Col>Weirdness: {weirdnessValue}</Col>
+        <Col>{weirdnessValue} / 10</Col>
       </Row>
     </div>
   );

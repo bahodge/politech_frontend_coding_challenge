@@ -18,7 +18,7 @@ function App() {
 
   return (
     <Container style={{ height: "100vh" }} className="App">
-      <Header style={{ marginBottom: "3rem" }}>
+      <Header style={{ marginBottom: "3rem", paddingTop: "25px" }}>
         <Grid style={{ maxWidth: "1000px" }}>
           <Row style={{ textAlign: "left" }}>
             <Col xs={24} sm={24} md={24} lg={24}>
@@ -29,7 +29,14 @@ function App() {
       </Header>
       <Content>
         {calculated ? (
-          <Calculated likedGifs={likedGifs} setLikedGifs={setLikedGifs} />
+          <Calculated
+            likedGifs={likedGifs}
+            setLikedGifs={setLikedGifs}
+            setGiphyResult={setGiphyResult}
+            setGiphyResultError={setGiphyResultError}
+            setCanCalculate={setCanCalculate}
+            setCalculated={setCalculated}
+          />
         ) : (
           <Grid style={{ maxWidth: "1000px" }}>
             <LeftPanel

@@ -38,7 +38,7 @@ const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
     }
 
     return true;
-    console.log(results);
+
     // look at all the things and see if searchTerm has been used
   };
 
@@ -106,6 +106,7 @@ const SearchForm = ({ setGiphyResult, setGiphyResultError }) => {
       </FormGroup>
       <FormGroup>
         <Slider
+          color={"green"}
           defaultValue={5}
           min={0}
           step={1}
