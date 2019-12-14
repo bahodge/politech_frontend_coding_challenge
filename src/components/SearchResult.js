@@ -2,13 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import LikeButton from "./LikeButton";
 
-const SearchResult = ({ giphyResult }) => {
-  const { url, id } = giphyResult;
+const SearchResult = ({ giphyResult, setLikedGifs }) => {
+  const { url, id, weirdnessValue } = giphyResult;
 
   return (
     <div>
       <img type="gif" src={url} alt={"Giphy Result"} />
-      <LikeButton url={url} id={id} />
+      <p>Weirdness: {weirdnessValue}</p>
+      <LikeButton
+        url={url}
+        id={id}
+        weirdnessValue={weirdnessValue}
+        setLikedGifs={setLikedGifs}
+      />
     </div>
   );
 };

@@ -3,17 +3,24 @@ import PropTypes from "prop-types";
 import { dispatchLikeGif, dispatchUnlikeGif } from "../redux/dispatcher";
 import { store } from "../redux/store";
 
-const LikeButton = ({ url, id }) => {
+const LikeButton = ({ url, id, weirdnessValue, setLikedGifs }) => {
   const [isLiked, setIsLiked] = useState(id in store.getState());
+
+  const likedGifs = Object.keys(store.getState()).map(id => {
+    const { url, weirdnessValue } = store.getState();
+    return { id, weirdnessValue, url };
+  });
 
   const handleLike = () => {
     setIsLiked(true);
-    return dispatchLikeGif(id, url);
+    dispatchLikeGif(id, url, weirdnessValue);
+    return setLikedGifs(likedGifs);
   };
 
   const handleUnlike = () => {
     setIsLiked(false);
-    return dispatchUnlikeGif(id);
+    dispatchUnlikeGif(id);
+    return setLikedGifs(likedGifs);
   };
 
   if (isLiked) {

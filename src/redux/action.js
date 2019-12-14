@@ -9,8 +9,8 @@ export const UNLIKE_GIF = "UNLIKE_GIF";
  * action creators
  */
 
-export function likeGif(id, url) {
-  return { type: LIKE_GIF, id, url };
+export function likeGif(id, url, weirdnessValue) {
+  return { type: LIKE_GIF, id, url, weirdnessValue };
 }
 
 export function unlikeGif(id) {

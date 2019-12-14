@@ -20,6 +20,7 @@ const SearchForm = ({ setGiphyResult }) => {
 
     const result = await makeTranslateRequest(sanitizedValues);
 
+    console.log(result);
     const {
       images: {
         downsized: { url }
@@ -27,7 +28,7 @@ const SearchForm = ({ setGiphyResult }) => {
       id
     } = result;
 
-    return setGiphyResult({ url, id });
+    return setGiphyResult({ url, id, weirdnessValue });
   };
 
   const updateSearchTerm = event => {

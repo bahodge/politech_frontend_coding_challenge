@@ -6,11 +6,13 @@ export const likedGifs = (state = {}, action) => {
       if (action.id in state) {
         return state;
       } else {
-        state[action.id] = action.url;
+        state[action.id] = {
+          url: action.url,
+          weirdnessValue: action.weirdnessValue
+        };
         return state;
       }
     case UNLIKE_GIF:
-      // Object.assign({}, state)
       let newState = {};
 
       Object.keys(state)
