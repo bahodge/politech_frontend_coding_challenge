@@ -16,7 +16,7 @@ const Calculated = props => {
   } = props;
 
   const handleStartOver = () => {
-    console.log("STARTING OVER!");
+    // console.log("STARTING OVER!");
     // Nukes the store
 
     setLikedGifs([]);
