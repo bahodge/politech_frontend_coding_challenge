@@ -11,13 +11,12 @@ This command builds the docker image as a nice production version.
 This command runs the docker image on your localhost on port 8080
 
 - `docker run -p 8080:80 bhodge/politech_frontend_coding_challenge:latest`
+- [localhost:8080](http://localhost:8080)
 
 ## Alternate Running
 
+- `npm install`
 - If you don't have docker, you can just run the application using `npm start`. This will open the application in development mode, but I'm sure thats cool.
-
-## Open your browser
-
 - [localhost:8080](http://localhost:8080)
 
 ## Dev Diary
@@ -40,4 +39,24 @@ Added base skin and fixed a bunch of redux issues across the application. I can 
 
 ### Day 4
 
-This is the only real day I can work on this application. The previous days have been "work for 25-30 mins" kind of days. Focusing on adding some basic styling as I am not a designer. Added a more solid workflow for liking and unliking gifs. As of now, you can't really unlike a gif. This may change later.
+This is the only real day I can work on this application. The previous days have been "work for 25-30 mins" kind of days. Focusing on adding some basic styling as I am not a designer. Added a more solid workflow for liking and unliking gifs. As of now, you can't really unlike a gif. This may change later. I added a 'calculated' view which shows the final result. The state is not persisted on refresh and I took very few liberties with the overall design. Made `request_service.js` more rubust and help me handle getting bad results.
+
+**Update:** I ran out of time before I could add tests. The application I do believe is feature complete and meets all the requirements.
+
+## Post Mortem
+
+### What went well :smiley: ?
+
+Overall, getting the config and the application up and running went surprisingly well. I've never really work intricately with redux but getting over the initial hump of 'only one source of truth' made it pretty simple to work with later. I'm sure I am barely exploring and taking advantage of it's capabilities. One thing I'm pretty proud of is using hooks. I could have used more hooks like `useEffect()` which now that I'm seeing it would have made my life way easier. I also was able to implement a completely new component library that I'd never used before to help me with layout and styling. Overall, the project took around 8 or so hours of real dev work.
+
+### What as a dumpster fire :fire: ?
+
+When I had started this project I wanted to have redux be the central point and whenever redux would be updated, the new state would trickle down like a calm stream throughout the application. Instead, I was met with state inconsistencies across the board because I was using a ton of state in both my components as well as redux. I think I went too far into the typical OOP pattern that I'm so used to and tried to apply concepts that shouldn't have been applied. This meant that I was constantly drilling my props through a twisted web of components just to get a boolean to flip if I needed it to. It was a huge mess. I think that what I really should have done was to lean on redux more and have redux be in charge of notifying the app/components of changes.
+
+### How to improve :hammer: ?
+
+I am not very used to working with react as a fully self contained application. Most react applications I write are super dumb and only act as rendering layers. I would definitely use more better organization of the application. I think the hierarchy I ended up with was ok, but there would be now way to scale it well. `LikeButton.js` as well as `LikedGifs.js` should for sure be rewritten. `LikeButton.js` requires too much outside input and is also responsible for way too much. `LikedGifs.js` is also responsible for far more than it needs to be. Use way more helper object and files would be better. Right now I'm only using a form sanitizer but to have some components that acted as data objects that I could just pass around would have been nice. Some more stuff would be to add better external service error handling, so if Giphy was down, handle that. As of now, I only handle the case that Giphy sends you a no results array.
+
+### Overall
+
+As always, I think I learned a ton and really enjoyed working on this. It has helped me identify what I'm weaker at and what I think I should improve on. Thanks again for letting me do this.
