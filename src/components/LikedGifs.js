@@ -4,7 +4,13 @@ import { Col, Row, Button } from "rsuite";
 
 import LikedGifsRow from "./LikedGifsRow";
 
-const LikedGifs = ({ likedGifs, canCalculate, setCalculated }) => {
+const LikedGifs = ({
+  likedGifs,
+  canCalculate,
+  setCalculated
+  // setCanCalculate,
+  // setLikedGifs
+}) => {
   const remainingLikes = () => 5 - likedGifs.length;
 
   const handleCalculate = () => {
@@ -37,9 +43,19 @@ const LikedGifs = ({ likedGifs, canCalculate, setCalculated }) => {
           <h4>Liked GIFs</h4>
         </Col>
       </Row>
-      <LikedGifsRow pairedLikedGifs={pairedUpLikedGifs().firstRow} />
-      <LikedGifsRow pairedLikedGifs={pairedUpLikedGifs().secondRow} />
       <LikedGifsRow
+        // setLikedGifs={setLikedGifs}
+        // setCanCalculate={setCanCalculate}
+        pairedLikedGifs={pairedUpLikedGifs().firstRow}
+      />
+      <LikedGifsRow
+        // setLikedGifs={setLikedGifs}
+        // setCanCalculate={setCanCalculate}
+        pairedLikedGifs={pairedUpLikedGifs().secondRow}
+      />
+      <LikedGifsRow
+        // setLikedGifs={setLikedGifs}
+        // setCanCalculate={setCanCalculate}
         pairedLikedGifs={pairedUpLikedGifs().lastRow}
         colWidth={24}
       />
@@ -72,7 +88,9 @@ const LikedGifs = ({ likedGifs, canCalculate, setCalculated }) => {
 };
 
 LikedGifs.propTypes = {
-  likedGifs: PropTypes.array.isRequired
+  likedGifs: PropTypes.array.isRequired,
+  canCalculate: PropTypes.bool.isRequired,
+  setCalculated: PropTypes.func.isRequired
 };
 
 export default LikedGifs;

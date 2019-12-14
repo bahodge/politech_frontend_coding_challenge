@@ -4,12 +4,20 @@ import { Row, Col } from "rsuite";
 
 import LikedGif from "./LikedGif";
 
-const LikedGifsRow = ({ pairedLikedGifs, colWidth = 12 }) => {
+const LikedGifsRow = ({
+  pairedLikedGifs,
+  colWidth = 12,
+  setLikedGifs,
+  setCanCalculate
+}) => {
   return (
     <Row style={{ marginTop: "1rem" }}>
       {pairedLikedGifs.map(({ url, id, weirdnessValue, title }, idx) => (
         <Col key={idx} md={colWidth} style={{ marginTop: "1rem" }}>
           <LikedGif
+            canUnlikeGif={true}
+            setLikedGifs={setLikedGifs}
+            setCanCalculate={setCanCalculate}
             url={url}
             id={id}
             weirdnessValue={weirdnessValue}

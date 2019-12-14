@@ -83,6 +83,13 @@ const Calculated = props => {
   );
 };
 
-Calculated.propTypes = {};
+Calculated.propTypes = {
+  likedGifs: PropTypes.array.isRequired,
+  setLikedGifs: PropTypes.func.isRequired,
+  setGiphyResult: PropTypes.func.isRequired,
+  setGiphyResultError: PropTypes.func.isRequired,
+  setCanCalculate: PropTypes.func.isRequired,
+  setCalculated: PropTypes.func.isRequired
+};
 
 export default Calculated;

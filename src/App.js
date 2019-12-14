@@ -51,6 +51,8 @@ function App() {
               likedGifs={likedGifs}
               canCalculate={canCalculate}
               setCalculated={setCalculated}
+              // setLikedGifs={setLikedGifs}
+              // setCanCalculate={setCanCalculate}
             />
           </Grid>
         )}
