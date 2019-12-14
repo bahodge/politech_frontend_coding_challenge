@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
+// import "rsuite/lib/styles/index.less"; // or 'rsuite/dist/styles/rsuite-default.css'
+import "rsuite/dist/styles/rsuite-default.css";
 import { store } from "./redux/store";
 
 store.subscribe(() => console.log("Redux Store", store.getState()));

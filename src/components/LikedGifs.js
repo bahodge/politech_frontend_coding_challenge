@@ -5,15 +5,6 @@ import LikedGif from "./LikedGif";
 import { store } from "../redux/store";
 
 const LikedGifs = ({ likedGifs }) => {
-  // const allLikedGifs = () => {
-  //   const currentState = store.getState();
-
-  //   return Object.keys(currentState).map(id => {
-  //     const { url, weirdnessValue } = currentState[id];
-  //     return { id, weirdnessValue, url };
-  //   });
-  // };
-
   return (
     <div>
       {likedGifs.map(({ url, id, weirdnessValue }, idx) => (

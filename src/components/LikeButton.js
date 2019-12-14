@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+
+import { Button } from "rsuite";
+
 import { dispatchLikeGif, dispatchUnlikeGif } from "../redux/dispatcher";
 import { store } from "../redux/store";
 
@@ -26,20 +29,16 @@ const LikeButton = ({ url, id, weirdnessValue, setLikedGifs }) => {
 
   if (isLiked) {
     return (
-      <div>
-        <button onClick={handleUnlike} type="button">
-          Unlike
-        </button>
-      </div>
+      <Button color="red" onClick={handleUnlike} type="button">
+        Unlike
+      </Button>
     );
   }
 
   return (
-    <div>
-      <button onClick={handleLike} type="button">
-        Like
-      </button>
-    </div>
+    <Button color="green" onClick={handleLike} type="button">
+      Like
+    </Button>
   );
 };
 
