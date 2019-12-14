@@ -7,7 +7,12 @@ const SearchResult = ({ giphyResult, setLikedGifs }) => {
 
   return (
     <div>
-      <img type="gif" src={url} alt={"Giphy Result"} />
+      <img
+        style={{ height: "250px" }}
+        type="gif"
+        src={url}
+        alt={"Giphy Result"}
+      />
       <p>Weirdness: {weirdnessValue}</p>
       <LikeButton
         url={url}

@@ -20,7 +20,7 @@ const LikedGif = ({ id, url, weirdnessValue, setLikedGifs }) => {
 
   return (
     <div>
-      <img src={url} alt={id} />
+      <img style={{ height: "100px" }} src={url} alt={id} />
       <p>Weirdness: {weirdnessValue}</p>
       {/* <LikeButton
         url={url}

@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 // import PropTypes from "prop-types";
+
+import {
+  Button,
+  Row,
+  Col,
+  Slider,
+  Form,
+  FormControl,
+  FormGroup,
+  ControlLabel,
+  Input,
+  InputGroup,
+  Icon
+} from "rsuite";
+
 import { makeTranslateRequest } from "../services/request_service";
 import { sanitizeString, sanitizeInteger } from "../helpers/FormSanitizer";
 
-import Slider from "rc-slider/lib/Slider";
-import "rc-slider/assets/index.css";
+// import Slider from "rc-slider/lib/Slider";
 
 const SearchForm = ({ setGiphyResult }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,38 +45,50 @@ const SearchForm = ({ setGiphyResult }) => {
     return setGiphyResult({ url, id, weirdnessValue });
   };
 
-  const updateSearchTerm = event => {
-    setSearchTerm(event.target.value);
+  const updateSearchTerm = newValue => {
+    setSearchTerm(newValue);
   };
 
-  const updateWeirdnessValue = value => {
-    setWeirdnessValue(value);
+  const updateWeirdnessValue = newValue => {
+    setWeirdnessValue(newValue);
   };
-
-  const buildSliderMarks = () => {
-    let marks = {};
-    [...Array(11).keys()].map(num => {
-      marks[num] = num;
-      return num;
-    });
-
-    return marks;
-  };
-
+  //updateSearchTerm
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="searchTerm">Search</label>
-      <input name="searchTerm" type="text" onChange={updateSearchTerm} />
-      <Slider
-        min={0}
-        max={10}
-        onChange={value => updateWeirdnessValue(value)}
-        marks={buildSliderMarks()}
-        step={1}
-        dots={true}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <FormGroup>
+        <ControlLabel>Search Term</ControlLabel>
+        <InputGroup inside>
+          <Input
+            name="searchTerm"
+            type="text"
+            value={searchTerm}
+            placeholder="Search Term"
+            onChange={value => updateSearchTerm(value)}
+          />
+          <InputGroup.Button
+            color="blue"
+            // onClick={e => console.log(e.target.submit())}
+            type="submit"
+          >
+            <Icon icon="check" /> Submit
+          </InputGroup.Button>
+        </InputGroup>
+      </FormGroup>
+      <FormGroup>
+        <Slider
+          defaultValue={5}
+          min={0}
+          step={1}
+          max={10}
+          graduated
+          progress
+          onChange={value => updateWeirdnessValue(value)}
+          renderMark={mark => {
+            return mark;
+          }}
+        />
+      </FormGroup>
+    </Form>
   );
 };
 
